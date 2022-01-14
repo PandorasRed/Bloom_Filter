@@ -1,16 +1,21 @@
 CPP=g++
-EXE=main
-SRC=src/
-INC=./include
-CFLAGS= -g -Wall -I $(INC)
 
-all: $(EXE)
+INC=include
+CFLAGS= -g -Wall -Wextra -Werror 
+NAME=main
+SRC_FILES = main.cpp readFastaFile.cpp 
+SRC_DIR = src
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 
-readFastaFile.o: $(SRC)readFastaFile.cpp
-			$(CPP) -o readFastaFile.o -c $(SRC)readFastaFile.cpp $(CFLAGS)
-main.o: $(SRC)main.cpp
-			$(CPP) -o main.o -c $(SRC)main.cpp $(CFLAGS)
-main: main.o readFastaFile.o 
-			$(CPP) -o main main.o $(CFLAGS)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CPP) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS)
+
+%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@ -I./$(INC)
+
 clean:
-	rm -f *.o main
+	rm -f $(OBJS) $(NAME)

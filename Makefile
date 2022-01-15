@@ -9,7 +9,7 @@ SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 
 
-all: $(NAME)
+all: clean $(NAME)
 
 $(NAME): $(OBJS)
 	$(CPP) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS)

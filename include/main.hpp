@@ -5,5 +5,7 @@
 #include <string>
 
 #include "readFastaFile.hpp"
+#include "hashkmer.hpp"
+
 
 #endif //MAIN_HPP

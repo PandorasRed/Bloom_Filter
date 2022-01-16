@@ -32,7 +32,7 @@ uint64_t hashKmer(std::string kmer,const int len){
     return hashedkmer;
 }
 /** 
- * take a kmer and retunr the reverse complement if its less than the base kmer
+ * take a kmer and return the reverse complement if its less than the base kmer
  * @param kmer the kmer to reverse to check
  * @param len length of the kmer;
  * @return the reverseComplement if its less than the base kmer in lexiographic order
@@ -62,6 +62,34 @@ std::string reverseComplement(std::string kmer,const int len){
     }else{
         return rev;
     }
+
+}
+/**
+ * take a kmer and return a new kmer with the first char supr
+ * and the last char is the next in the file
+ * @param oldkmer previous kmer
+ * @param len length of the kmer
+ * @param fs the filestream where we take our next kmer;
+ * @return the next kmer(give a totally new one is oldkmer has not the good size)
+ */
+std::string newkmer(std::string oldkmer,const int len,std::ifstream& fs){
+    std::string newkmer=" ";
+    newkmer.resize(len);
+    if(oldkmer.size()!=(uint)len){
+        for(int i=0;i<len;i++){
+            newkmer[i]=nextC(fs); //we can estimate that we never ask for a kmer bigger than what the whole file contains
+        }
+        return newkmer;
+    }
+    char a=nextC(fs);
+    if(a==EOF){
+        return "E";
+    }
+    for(int i=1;i<len;i++){
+        newkmer[i-1]=oldkmer[i];
+    }
+    newkmer[len-1]=a;
+    return newkmer;
 
 }
 

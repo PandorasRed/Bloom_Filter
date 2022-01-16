@@ -4,7 +4,8 @@
 #include <fstream>
 #include <string>
 
-uint64_t hashkmer(std::string kmer, int cursor,const int len);
+uint64_t hashKmer(std::string kmer,const int len);
+std::string reverseComplement(std::string kmer, const int len);
 
 
 #endif //HASHKMER_HPP

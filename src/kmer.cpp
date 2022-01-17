@@ -38,6 +38,9 @@ uint64_t hashKmer(std::string kmer,const int len){
  * @return the reverseComplement if its less than the base kmer in lexiographic order
  */
 std::string reverseComplement(std::string kmer,const int len){
+    if(kmer=="E"){
+        return "E";
+    }
     std::string rev=" ";
     rev.resize(len);
     for(int i=0;i<len;i++){
@@ -66,7 +69,7 @@ std::string reverseComplement(std::string kmer,const int len){
 }
 /**
  * take a kmer and return a new kmer with the first char supr
- * and the last char is the next in the file
+ * and the last char is the next char in the file
  * @param oldkmer previous kmer
  * @param len length of the kmer
  * @param fs the filestream where we take our next kmer;

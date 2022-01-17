@@ -6,6 +6,7 @@
 
 #include "readFastaFile.hpp"
 #include "kmer.hpp"
+#include "bloomFilter.hpp"
 
 
 #endif //MAIN_HPP

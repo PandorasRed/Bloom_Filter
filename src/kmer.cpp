@@ -1,4 +1,9 @@
 #include <kmer.hpp>
+
+
+
+
+
 /**
  * take a string reprensation of a kmer and return the hash of this kmer;
  * @param kmer string representation of a kmer
@@ -94,5 +99,31 @@ std::string newkmer(std::string oldkmer,const int len,std::ifstream& fs){
     newkmer[len-1]=a;
     return newkmer;
 
+}
+/**
+ *take the len of the random kmer we want, suppose a call at srand before call;
+ *@param len the length of the randomkmer 
+ *@return a new randomkmer of the len
+ */
+std::string randomkmer(const int len){
+    std::string r="";
+    for(int i=0;i<len;i++){
+        switch(rand()%4){
+            case 0:
+                r.append("A");
+                break;
+            case 1:
+                r.append("C");
+                break;
+            case 2:
+                r.append("T");
+
+                break;
+            case 3:
+                r.append("G");
+                break;
+        }
+    }
+    return r;
 }
 

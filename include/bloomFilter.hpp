@@ -7,10 +7,10 @@
 class bloomFilter{
     private:
     uint64_t size;
-    uint64_t nbf;
+    unsigned int nbf;
     uint8_t* bytesArray;
     public:
-    bloomFilter(uint64_t newsize, u_int64_t nf);
+    bloomFilter(uint64_t newsize, unsigned int nf);
     ~bloomFilter();
     void add_value(uint64_t x);
     void test();

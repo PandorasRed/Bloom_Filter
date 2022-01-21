@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 	if(argc!=6){
 		
 		
-		std::cout << "nombre d'argument invalide, la syntaxe du programme est main p t nbh nbt "<< std::endl;
-		std::cout << "p le path du fichier fasta;\nt la taille du filtre de bloom demander(max2^34);\nnbh le nombre de fonction de hashage demander;\nnbt le nombre de requette de test;\n";
+		std::cout << "nombre d'argument invalide, la syntaxe du programme est main p k t nbh nbt "<< std::endl;
+		std::cout << "k la taille du kmer demander\np le path du fichier fasta;\nt la taille du filtre de bloom demander(max2^34);\nnbh le nombre de fonction de hashage demander;\nnbt le nombre de requette de test;\n";
 	}else{
 		std::ifstream fs(argv[1]);//ifstream of the fastaFile
 		srand (time(NULL));//init for the random request

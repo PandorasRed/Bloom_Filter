@@ -38,11 +38,12 @@ uint64_t hashKmer(std::string kmer,const int len){
 }
 /** 
  * take a kmer and return the reverse complement if its less than the base kmer
+ * (deprecetatied because better version now)
  * @param kmer the kmer to reverse to check
  * @param len length of the kmer;
  * @return the reverseComplement if its less than the base kmer in lexiographic order
  */
-std::string reverseComplement(std::string kmer,const int len){
+std::string deprecetiatedreverseComplement(std::string kmer,const int len){
     if(kmer=="E"){
         return "E";
     }
@@ -79,7 +80,7 @@ std::string reverseComplement(std::string kmer,const int len){
  * @param len length of the kmer;
  * @return the reverseComplement if its less than the base kmer in lexiographic order
  */
-/*std::string newreverseComplement(std::string kmer, const int len){
+std::string reverseComplement(std::string kmer, const int len){
     if(kmer=="E"){
         return "E";
     }
@@ -88,24 +89,70 @@ std::string reverseComplement(std::string kmer,const int len){
     for(int i=len-1;i>=0;i--){ // reading the string from the end to the start
         switch(kmer[i]){
             case 'A':
-                if(kmer[len-1-i]<'T'){ //only a if/else because a letter in our case can only be < or = to 'T'
-                    return finishReverse(kmer,len,i);
+                if(kmer[len-1-i]<'T'){ //si la lettre regarder est inférieur a T indique que la string de base est plus petite que le reverse
+                    return kmer;
                 }else{
                     rev[len-1-i]='T';
                 }
+                break;
             case 'T':
-                if(kmer[len-1-i]>'A'){
-
+                if(kmer[len-1-i]>'A'){//si la lettre regarder est supérieur a A indique que la string de base est plus grande que le reverse
+                    return finishReverse(kmer,len,rev,i);
+                }else{
+                    rev[len-1-i]='A';
                 }
+                break;
+            case 'C':
+                if(kmer[len-1-i]>'G'){
+                    return finishReverse(kmer,len,rev,i);
+                }else if(kmer[len-1-i]<'G'){
+                    return kmer;
+                }else{
+                    rev[len-1-i]='G';
+                }
+                break;
+            case 'G':
+                if(kmer[len-1-i]>'C'){
+                    return finishReverse(kmer,len,rev,i);
+                }else if(kmer[len-1-i]<'C'){
+                    return kmer;
+                }else{
+                    rev[len-1-i]='C';
+                }
+                break;
         }
     }
+    return rev;
 
 }
-std::string finishReverse(std::string kmer, const int len, int i,std::string rev){
-    for(i;i>=0;i--){
-        rev[len-1-i]=
+/**
+ * function used to finish a reverse when its sure its the reverse we want
+ * @param kmer the kmer we want the reversecomplement
+ * @param len the len of the kmer
+ * @param rev the reversecomplement partially constructed
+ * @param i where the curent reverse is at
+ * @return the reverse of the kmer 
+ */
+std::string finishReverse(std::string kmer, const int len, std::string rev,int i){
+    for(i=i;i>=0;i--){
+         switch(kmer[i]){
+            case 'C':
+                rev[(len-1)-i]='G';
+                break;
+            case 'G':
+                rev[(len-1)-i]='C';
+                break;
+            case 'T':
+                rev[(len-1)-i]='A';
+                break;
+            case 'A': 
+                rev[(len-1)-i]='T';
+                break;
+
+        }
     }
-}*/
+    return rev;
+}
 /**
  * take a kmer and return a new kmer with the first char supr
  * and the last char is the next char in the file

@@ -3,15 +3,6 @@
  
 int main(int argc, char *argv[])
 {
-	/*std::vector<bool>*  vt=new std::vector<bool>(10,0);
-	vt->resize(50000);
-	std::cout<<vt->at(48546) << std::endl;
-	vt->at(48546)=1;
-	std::cout<<vt->at(48546) << std::endl;
-	delete vt;*/
-	/*uint8_t test=0;
-	test|=(1<<7);
-	std::cout<<(unsigned int)test<<std::endl;*/
 	if(argc!=6){
 		
 		
@@ -30,19 +21,21 @@ int main(int argc, char *argv[])
 		t=reverseComplement(t,k);
 		a->add_value(hashKmer(t,k));
 
-		while(t!="E"){
+		while(t!="E"){ //loop to create the kmer and add it to the bloomfilter
 			t=newkmer(t,k,fs);
 			t=reverseComplement(t,k);
-			//std::cout<<t<< std::endl;
 			if(t!="E"){
 				a->add_value(hashKmer(t,k));
 			}
 		}
-		//a->test();
 		fs.close();
-		for(unsigned long int i=0;i<request;i++){
+		for(unsigned long int i=0;i<request;i++){//loop to do the number of request needed
 			std::string test=randomkmer(k);
-			std::cout<<test<<a->is_present(hashKmer(reverseComplement(test,k),k)) << std::endl;
+			std::string present="not present";
+			if(a->is_present(hashKmer(reverseComplement(test,k),k))){
+				present="present";
+			}
+			std::cout<<test<<" : "<<present<< std::endl; //
 		}
 		delete a;
 

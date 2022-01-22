@@ -38,7 +38,7 @@ uint64_t hashKmer(std::string kmer,const int len){
 }
 /** 
  * take a kmer and return the reverse complement if its less than the base kmer
- * (deprecetatied because better version now)
+ * (deprecetatied because optimised version below)
  * @param kmer the kmer to reverse to check
  * @param len length of the kmer;
  * @return the reverseComplement if its less than the base kmer in lexiographic order
@@ -75,7 +75,7 @@ std::string deprecetiatedreverseComplement(std::string kmer,const int len){
 }
 /**
  * take a kmer and return the reverse complement if its less than the base kmer
- * better than the first function because checking to create better case, and the worst case stay the same.
+ * better than the first function because checking to create better case, and the worst case is what the precedent function do for all case.
  * @param kmer the kmer to reverse to check
  * @param len length of the kmer;
  * @return the reverseComplement if its less than the base kmer in lexiographic order

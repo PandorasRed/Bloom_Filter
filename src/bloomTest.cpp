@@ -1,5 +1,5 @@
 #include <vector>
-#include <main.hpp>
+#include <bloomTest.hpp>
  
 int main(int argc, char *argv[])
 {

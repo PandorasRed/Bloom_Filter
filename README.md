@@ -11,8 +11,8 @@ nettoie le dossier de tous les fichier compiler et recompile le projet en entier
 # Utilisation
 
 ```bash
-  #         fichier          k    n    nf  r
-  ./monprog data/ecoli.fasta 31 456637 3 10000
+  #           fichier     k    n    nf  r
+  ./bloomTest ecoli.fasta 31 456637 3 10000
 ```
 lance le programme pour créer un bloom filter de taille n avec nf fonctions de hash,k la taille des kmer, et r le nombre de requetes aléatoire testé dessus,
 affiche les kmer tester et si ils sont présents ou non.

@@ -2,8 +2,8 @@ CPP=g++
 
 INC=include
 CFLAGS= -g -Wall -Wextra -Werror 
-NAME=main
-SRC_FILES = main.cpp readFastaFile.cpp kmer.cpp bloomFilter.cpp hash.cpp
+NAME=bloomTest
+SRC_FILES = bloomTest.cpp readFastaFile.cpp kmer.cpp bloomFilter.cpp hash.cpp
 SRC_DIR = src
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(patsubst %.cpp, %.o, $(SRCS))

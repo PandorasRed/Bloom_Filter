@@ -4,15 +4,13 @@
 int main(int argc, char *argv[])
 {
 	if(argc!=6){
-		
-		
-		std::cout << "nombre d'argument invalide, la syntaxe du programme est main p k t nbh nbt "<< std::endl;
-		std::cout << "k la taille du kmer demander\np le path du fichier fasta;\nt la taille du filtre de bloom demander(max2^34);\nnbh le nombre de fonction de hashage demander;\nnbt le nombre de requette de test;\n";
+		std::cout << "invalid argument the command line is : bloomTest p k t nbh nbt "<< std::endl;
+		std::cout << "p the path of the fasta file;\nk the size of the kmer;\nt the size of the bloom filter(max2^34);\nnumber of hash function for the bloom filter;\nnbt number of test request;\n";
 	}else{
 		std::ifstream fs(argv[1]);//ifstream of the fastaFile
 		srand (time(NULL));//init for the random request
 		const unsigned int k=atoi(argv[2]);
-		uint64_t size = atol(argv[3]);
+		const uint64_t size = atol(argv[3]);
 		const unsigned int nf=atoi(argv[4]);
 		const uint64_t request = atol(argv[5]);//no precision for the max so assuming we want big number of request
 		bloomFilter* a=new bloomFilter(size,nf);
@@ -33,7 +31,7 @@ int main(int argc, char *argv[])
 			std::string test=randomkmer(k);
 			std::string present="not present";
 			if(a->is_present(hashKmer(reverseComplement(test,k),k))){
-				present="present";
+				present="probably present";
 			}
 			std::cout<<test<<" : "<<present<< std::endl; //
 		}

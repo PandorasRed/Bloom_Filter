@@ -1,3 +1,0 @@
-fonction pour lire caractère par caractère avec un get() avec un flux d'entré par ifstream(#TODO verfier si pas plus efficace/rapide existe en c++)
-faire en sorte de stocker la première ligne dans une string ou de la jeter puis chaque appel renvoie le prochain char
-si autrechose que ACTG ignorer et passe a celui d'après
